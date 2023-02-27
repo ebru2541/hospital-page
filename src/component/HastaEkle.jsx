@@ -1,17 +1,32 @@
 import React, { useState } from "react";
 
-const HastaEkle = ({ dataDoktor, hastaSon}) => {
-  console.log(dataDoktor)
-  console.log()
-    const handleDeleteClick = (e) => {
-      e.target.className === "icon" && e.target.closest(".liste").remove();
+const HastaEkle = ({ dataDoktor, hastaSon }) => {
+  const [hastaBil, setHastaBil] = useState("");
+  const [day, setDay] = useState("");
+  const [tog, setTog] = useState("");
+  // const [has, setHas] = useState("");
+  console.log(dataDoktor);
+  console.log();
+
+  const hastaAddClick = () => {
+    const hastaEkle = {
+      text: hastaBil,
+      day: day,
+      doktor: dataDoktor.doktor,
+      bittiMi: tog,
     };
+    hastaSon.push(hastaEkle);
+    console.log(hastaSon);
+  };
+  const handleDeleteHastaClick = (e) => {
+    e.target.className === "icon" && e.target.closest(".liste-hasta").remove();
+  };
 
   return (
     <div className="container">
       <div className="row">
         <div className="col-6 box">
-          <div className="img">
+          <div className="img1">
             <img
               src={dataDoktor.img}
               width="140px"
@@ -26,11 +41,23 @@ const HastaEkle = ({ dataDoktor, hastaSon}) => {
 
           <div>
             <h6 className="m-2">Hasta Bilgileri</h6>
-            <input type="text" className="w-75 " />
+            <input
+              type="text"
+              className="w-75 "
+              onChange={(e) => setHastaBil(e.target.value)}
+            />
             <h6 className="m-2">Day & Time</h6>
-            <input type="date" className="w-75" />
+            <input
+              type="date"
+              className="w-75"
+              onChange={(e) => setDay(e.target.value)}
+            />
             <br></br>
-            <button type="button" class="btn btn-warning mt-3 me-2">
+            <button
+              type="button"
+              class="btn btn-warning mt-3 me-2"
+              onClick={hastaAddClick}
+            >
               <span className="text-danger">{dataDoktor.doktor}</span> için
               kayıt oluştur
             </button>
@@ -52,7 +79,7 @@ const HastaEkle = ({ dataDoktor, hastaSon}) => {
                 <div className="durum">
                   <h3>Hasta Tedavi Edildi.</h3>
                 </div>
-                <div className="icon" onClick={handleDeleteClick}>
+                <div className="icon" onClick={handleDeleteHastaClick}>
                   ❌
                 </div>
               </div>

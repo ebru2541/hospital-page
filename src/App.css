@@ -79,29 +79,53 @@
   justify-content: space-between;
   margin: 1.4rem 6rem;
   /* border: 2px solid red; */
-  padding: .5rem  3rem;
-  background-color:rgb(155, 119, 173);
+  padding: 0.5rem 3rem;
+  background-color: rgb(155, 119, 173);
   border-radius: 5rem;
-  
+
   /* text-decoration: line-through; */
 }
 
-.liste h2{
+h2 {
   color: green;
 }
 .durum {
   display: flex;
   align-items: center;
-  justify-content:flex-start;
+  justify-content: flex-start;
 }
-.bilgi{
+.bilgi {
   width: 300px;
 }
-h3{
+h3 {
   color: rgb(155, 119, 173);
 }
 
+.liste-hasta {
+  display: flex;
+  justify-content: space-between;
+  margin: 1.4rem 6rem;
+  /* border: 2px solid red; */
+  padding: 0.3rem 1rem;
+  background-color: rgb(155, 119, 173);
 
-.liste-hasta{
-  
+  border-radius: 3rem;
+}
+.liste-hasta h2 {
+  font-size: 20px;
+}
+
+.img1 {
+  width: 160px;
+  color: pink;
+  border: 10px solid pink;
+  border-image: repeating-linear-gradient(
+      45deg,
+      purple,
+      purple 1%,
+      pink 1%,
+      pink 8%
+    )
+    10;
+  color: purple;
 }
