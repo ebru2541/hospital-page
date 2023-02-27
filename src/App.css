@@ -1,38 +1,107 @@
-.App {
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* body{
+  background-image: url("./helpers/healthcare-technology-doctor-using-digital-tablet-icon-medical-network-hospital-background-162019727.jpg");
+} */
+
+.container {
+  /* border: 2px solid red; */
+  text-align: left;
+  margin: auto;
+  margin-top: 19px;
+}
+
+.box {
+  /* border: 2px solid red; */
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-direction: column;
 }
 
-.App-link {
-  color: #61dafb;
+.name-box {
+  /* border: 2px solid red; */
+  padding: 0.3rem 1rem;
+  margin-top: 1rem;
+  color: purple;
+  border: 10px solid pink;
+  border-image: repeating-linear-gradient(
+      45deg,
+      purple,
+      purple 1%,
+      pink 1%,
+      pink 8%
+    )
+    10;
+  color: purple;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.img {
+  width: 160px;
+
+  color: pink;
+  border: 10px solid pink;
+  border-image: repeating-linear-gradient(
+      45deg,
+      pink,
+      pink 1%,
+      purple 1%,
+      purple 8%
+    )
+    10;
+}
+
+.img:hover {
+  border-image: repeating-linear-gradient(
+      45deg,
+      purple,
+      purple 1%,
+      pink 1%,
+      pink 8%
+    )
+    10;
+  color: purple;
+}
+
+/* .asd{
+  display: none;
+} */
+
+.liste {
+  display: flex;
+  justify-content: space-between;
+  margin: 1.4rem 6rem;
+  /* border: 2px solid red; */
+  padding: .5rem  3rem;
+  background-color:rgb(155, 119, 173);
+  border-radius: 5rem;
+  
+  /* text-decoration: line-through; */
+}
+
+.liste h2{
+  color: green;
+}
+.durum {
+  display: flex;
+  align-items: center;
+  justify-content:flex-start;
+}
+.bilgi{
+  width: 300px;
+}
+h3{
+  color: rgb(155, 119, 173);
+}
+
+
+.liste-hasta{
+  
 }
