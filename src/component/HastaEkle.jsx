@@ -4,6 +4,8 @@ const HastaEkle = ({ dataDoktor, hastaSon }) => {
   const [hastaBil, setHastaBil] = useState("");
   const [day, setDay] = useState("");
   const [tog, setTog] = useState("");
+  const [hastaSonSon, setHastaSonSon] = useState(hastaSon);
+  console.log("yyyyy", hastaSonSon);
   // const [has, setHas] = useState("");
   console.log(dataDoktor);
   console.log();
@@ -16,12 +18,38 @@ const HastaEkle = ({ dataDoktor, hastaSon }) => {
       bittiMi: tog,
     };
     hastaSon.push(hastaEkle);
-    console.log(hastaSon);
+    console.log("s", hastaSon);
+    setHastaSonSon(hastaSon);
   };
+  console.log(hastaSon);
   const handleDeleteHastaClick = (e) => {
     e.target.className === "icon" && e.target.closest(".liste-hasta").remove();
   };
 
+  const handleDivClickk = (e) => {
+    const h2 = e.target.querySelectorAll("h2");
+    const h3 = e.target.getElementsByTagName("h3");
+
+    if (tog) {
+      if (e.target.className === "liste") {
+        h2.forEach((item) => {
+          item.style.color = "green";
+          item.style.textDecoration = "none";
+        });
+        e.target.style.backgroundColor = "rgb(155, 119, 173)";
+        h3[0].style.display = "none";
+      }
+    } else {
+      h2.forEach((item) => {
+        item.style.color = "red";
+        item.style.textDecoration = "line-through";
+      });
+      e.target.style.backgroundColor = "rgb(163, 74, 157)";
+      h3[0].style.display = "flex";
+      h3[0].style.color = "red";
+    }
+    setTog(!tog);
+  };
   return (
     <div className="container">
       <div className="row">
@@ -67,10 +95,14 @@ const HastaEkle = ({ dataDoktor, hastaSon }) => {
             </button>
           </div>
         </div>
-        <div className="col-6 box">
+        <div className="col-6 box ">
           <div>
-            {hastaSon.map(({ text, doktor, day }) => (
-              <div className="liste-hasta" role="button">
+            {hastaSonSon.map(({ text, doktor, day }) => (
+              <div
+                className="liste-hasta"
+                role="button"
+                onClick={(e) => handleDivClickk(e)}
+              >
                 <div className="bilgi">
                   <h2>{text}</h2>
                   <p className="text-light">{day}</p>

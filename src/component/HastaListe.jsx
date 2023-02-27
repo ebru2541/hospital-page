@@ -2,68 +2,59 @@ import React, { useState } from "react";
 import data from "../helpers/hastalar";
 
 const HastaListe = (e) => {
-  const [toggle, setToggle] = useState("");
+  const [toggle, setToggle] = useState(false);
 
-  const [dataSon, setDataSon] = useState([]);
+  const [dataSon, setDataSon] = useState(data);
 
-  const handleDivClick = ({ e, id, text, day, bittiMi, doktor }) => {
-    const h2 = e.target.querySelectorAll("h2");
-    const h3 = e.target.getElementsByTagName("h3");
-    setToggle(bittiMi);
+  const handleDeleteClick = (id) => {
+    const deleteLis = dataSon.filter((del) => del.id != id);
+    console.log(deleteLis);
+    setToggle(!toggle)
+   
+    setDataSon([...deleteLis]);
+  };
 
-    if (toggle) {
-      if (e.target.className === "liste") {
-        h2.forEach((item) => {
-          item.style.color = "green";
-          item.style.textDecoration = "none";
-        });
-        e.target.style.backgroundColor = "rgb(155, 119, 173)";
-        h3[0].style.display = "none";
+  const handleDivClick = (id) => {
+    const uptadeList = dataSon.map((doktor) => {
+      if (doktor.id == id) {
+        return {
+          ...doktor,
+          bittiMi: !doktor.bittiMi,
+        };
       }
-    } else {
-      h2.forEach((item) => {
-        item.style.color = "red";
-        item.style.textDecoration = "line-through";
-      });
-      e.target.style.backgroundColor = "rgb(163, 74, 157)";
-      h3[0].style.display = "flex";
-      h3[0].style.color = "red";
-    }
-
-    const newA = new Object({
-      id: id,
-      text: text,
-      day: day,
-      bittiMi: toggle,
-      doktor: doktor,
+      return doktor;
     });
 
-    setDataSon(newA);
-    console.log("datas", dataSon);
-    setToggle(!toggle);
+    setDataSon(uptadeList);
   };
 
-  const handleDeleteClick = (e) => {
-    e.target.className === "icon" && e.target.closest(".liste").remove();
-  };
   return (
     <div>
-      {data.map(({ id, text, day, bittiMi, doktor }) => (
+      {dataSon.map(({ id, text, day, bittiMi, doktor }) => (
         <div
           className="liste"
-          onClick={(e) => handleDivClick({ e, bittiMi, text, day, doktor, id })}
+          onClick={() => handleDivClick(id)}
           role="button"
           key={id}
+      disabled={toggle ? "disabled" : " "}
+          
         >
           <div className="bilgi">
-            <h2>{text}</h2>
+            <h2 className={bittiMi ? "text-danger" : ""}>{text}</h2>
             <p className="text-light">{day}</p>
-            <h2>{doktor}</h2>
+            <h2 className={bittiMi ? "text-danger" : ""}>{doktor}</h2>
           </div>
           <div className="durum">
-            <h3>Hasta Tedavi Edildi.</h3>
+            <h3 className={bittiMi ? "text-danger" : ""}>
+              Hasta Tedavi Edildi.
+            </h3>
           </div>
-          <div className="icon" onClick={handleDeleteClick}>
+          <div
+      
+            className="icon"
+            role="button"
+            onClick={(e) => handleDeleteClick(id)}
+          >
             ❌
           </div>
         </div>
