@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const HastaEkle = ({ dataDoktor, hastaSon }) => {
-  const [hastaBil, setHastaBil] = useState("");
+  const [hastaBil, setHastaBil] = useState(hastaSon);
   const [day, setDay] = useState("");
   const [tog, setTog] = useState("");
   const [hastaSonSon, setHastaSonSon] = useState(hastaSon);
@@ -17,9 +17,9 @@ const HastaEkle = ({ dataDoktor, hastaSon }) => {
       doktor: dataDoktor.doktor,
       bittiMi: tog,
     };
-    hastaSon.push(hastaEkle);
-    console.log("s", hastaSon);
-    setHastaSonSon(hastaSon);
+    hastaSonSon.push(hastaEkle);
+    console.log(setHastaSonSon);
+  
   };
   console.log(hastaSon);
   const handleDeleteHastaClick = (e) => {

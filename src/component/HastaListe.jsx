@@ -15,6 +15,7 @@ const HastaListe = (e) => {
   };
 
   const handleDivClick = (id) => {
+    
     const uptadeList = dataSon.map((doktor) => {
       if (doktor.id == id) {
         return {
@@ -29,35 +30,35 @@ const HastaListe = (e) => {
   };
 
   return (
-    <div>
+    <div className="box">
       {dataSon.map(({ id, text, day, bittiMi, doktor }) => (
-        <div
-          className="liste"
-          onClick={() => handleDivClick(id)}
-          role="button"
-          key={id}
-      disabled={toggle ? "disabled" : " "}
-          
-        >
-          <div className="bilgi">
-            <h2 className={bittiMi ? "text-danger" : ""}>{text}</h2>
-            <p className="text-light">{day}</p>
-            <h2 className={bittiMi ? "text-danger" : ""}>{doktor}</h2>
-          </div>
-          <div className="durum">
-            <h3 className={bittiMi ? "text-danger" : ""}>
-              Hasta Tedavi Edildi.
-            </h3>
+        <>
+          <div
+            className="liste"
+            onClick={() => handleDivClick(id)}
+            role="button"
+            key={id}
+            disabled={toggle ? "disabled" : " "}
+          >
+            <div className="bilgi">
+              <h2 className={bittiMi ? "text-danger" : ""}>{text}</h2>
+              <p className="text-light">{day}</p>
+              <h2 className={bittiMi ? "text-danger" : ""}>{doktor}</h2>
+            </div>
+            <div className="durum">
+              <h3 className={bittiMi ? "text-danger" : ""}>
+                Hasta Tedavi Edildi.
+              </h3>
+            </div>
           </div>
           <div
-      
             className="icon"
             role="button"
             onClick={(e) => handleDeleteClick(id)}
           >
             ❌
           </div>
-        </div>
+        </>
       ))}
     </div>
   );

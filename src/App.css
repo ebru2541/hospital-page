@@ -130,3 +130,8 @@ h3 {
   color: purple;
 }
 
+.icon{
+  position: absolute;
+  right: 160px;
+  top: 2px;
+}
