@@ -6,16 +6,14 @@ const HastaListe = (e) => {
 
   const [dataSon, setDataSon] = useState(data);
 
-  const handleDeleteClick = (id) => {
+  const handleDeleteClick = (id, e) => {
     const deleteLis = dataSon.filter((del) => del.id != id);
     console.log(deleteLis);
-    setToggle(!toggle)
-   
-    setDataSon([...deleteLis]);
+    setToggle(!toggle);
+    setDataSon(deleteLis);
   };
 
   const handleDivClick = (id) => {
-    
     const uptadeList = dataSon.map((doktor) => {
       if (doktor.id == id) {
         return {
@@ -50,13 +48,13 @@ const HastaListe = (e) => {
                 Hasta Tedavi Edildi.
               </h3>
             </div>
-          </div>
-          <div
-            className="icon"
-            role="button"
-            onClick={(e) => handleDeleteClick(id)}
-          >
-            ❌
+            <div
+              className="icon"
+              role="button"
+              onDoubleClick={(e) => handleDeleteClick(id, e)}
+            >
+              ❌
+            </div>
           </div>
         </>
       ))}

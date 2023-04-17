@@ -20,7 +20,7 @@ const Home = () => {
     setShow(!show);
 
     const hastaSon = hasta.filter((item) => item.doktor === newDoktor.doktor);
-    console.log(hastaSon)
+
     setHastaSon(hastaSon)
   };
 
@@ -50,7 +50,16 @@ const Home = () => {
           ))}
         </div>
       </div>
-      {show ? <HastaListe /> : <HastaEkle dataDoktor={dataDoktor} hastaSon={hastaSon}/>}
+      {show ? (
+        <HastaListe />
+      ) : (
+        <HastaEkle
+          dataDoktor={dataDoktor}
+          setDataDoktor={setDataDoktor}
+          hastaSon={hastaSon}
+          setHastaSon={setHastaSon}
+        />
+      )}
     </div>
   );
 };

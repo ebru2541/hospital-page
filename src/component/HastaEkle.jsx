@@ -1,55 +1,42 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const HastaEkle = ({ dataDoktor, hastaSon }) => {
+const HastaEkle = ({ dataDoktor, hastaSon, setDataDoktor, setHastaSon }) => {
   const [hastaBil, setHastaBil] = useState(hastaSon);
   const [day, setDay] = useState("");
-  const [tog, setTog] = useState("");
-  const [hastaSonSon, setHastaSonSon] = useState(hastaSon);
-  console.log("yyyyy", hastaSonSon);
-  // const [has, setHas] = useState("");
-  console.log(dataDoktor);
-  console.log();
+const navigate=useNavigate()
 
-  const hastaAddClick = () => {
-    const hastaEkle = {
-      text: hastaBil,
+  const hastaAddClick = (doktor) => {
+    setHastaSon([...hastaSon, {
+      id: hastaSon.lenght + 1,
       day: day,
-      doktor: dataDoktor.doktor,
-      bittiMi: tog,
-    };
-    hastaSonSon.push(hastaEkle);
-    console.log(setHastaSonSon);
-  
-  };
-  console.log(hastaSon);
-  const handleDeleteHastaClick = (e) => {
-    e.target.className === "icon" && e.target.closest(".liste-hasta").remove();
+      bittiMi: false,
+      doktor: doktor,
+      text:hastaBil
+    }]);
+    
   };
 
-  const handleDivClickk = (e) => {
-    const h2 = e.target.querySelectorAll("h2");
-    const h3 = e.target.getElementsByTagName("h3");
+  const handleDeleteHastaClick = ( id) => {
+    const deleteLis = hastaSon.filter((del) => del.id != id);
+    setHastaSon(deleteLis);
+    
+  };
 
-    if (tog) {
-      if (e.target.className === "liste") {
-        h2.forEach((item) => {
-          item.style.color = "green";
-          item.style.textDecoration = "none";
-        });
-        e.target.style.backgroundColor = "rgb(155, 119, 173)";
-        h3[0].style.display = "none";
+  const handleDivClickk = (id) => {
+    const uptadeLis = hastaSon.map((doktor) => {
+      if (doktor.id == id) {
+        return {
+          ...doktor,
+          bittiMi: !doktor.bittiMi,
+        };
       }
-    } else {
-      h2.forEach((item) => {
-        item.style.color = "red";
-        item.style.textDecoration = "line-through";
-      });
-      e.target.style.backgroundColor = "rgb(163, 74, 157)";
-      h3[0].style.display = "flex";
-      h3[0].style.color = "red";
-    }
-    setTog(!tog);
+      return doktor;
+    });
+
+    setHastaSon(uptadeLis);
   };
+
   return (
     <div className="container">
       <div className="row">
@@ -84,34 +71,39 @@ const HastaEkle = ({ dataDoktor, hastaSon }) => {
             <button
               type="button"
               class="btn btn-warning mt-3 me-2"
-              onClick={hastaAddClick}
+              onClick={() => hastaAddClick(dataDoktor.doktor)}
             >
               <span className="text-danger">{dataDoktor.doktor}</span> için
               kayıt oluştur
             </button>
             <br></br>
-            <button type="button" class="btn btn-info mt-2">
+            <button type="button" class="btn btn-info mt-2" onClick={()=> navigate("/")}>
               Geri Dön
             </button>
           </div>
         </div>
         <div className="col-6 box ">
           <div>
-            {hastaSonSon.map(({ text, doktor, day }) => (
+            {hastaSon.map(({ text, doktor, day, bittiMi, id }) => (
               <div
                 className="liste-hasta"
                 role="button"
-                onClick={(e) => handleDivClickk(e)}
+                onClick={() => handleDivClickk(id)}
               >
                 <div className="bilgi">
-                  <h2>{text}</h2>
+                  <h2 className={bittiMi ? "text-danger" : ""}>{text}</h2>
                   <p className="text-light">{day}</p>
-                  <h2>{doktor}</h2>
+                  <h2 className={bittiMi ? "text-danger" : ""}>{doktor}</h2>
                 </div>
                 <div className="durum">
-                  <h3>Hasta Tedavi Edildi.</h3>
+                  <h3 className={bittiMi ? "text-danger" : ""}>
+                    Hasta Tedavi Edildi.
+                  </h3>
                 </div>
-                <div className="icon" onClick={handleDeleteHastaClick}>
+                <div
+                  className="icon"
+                  onClick={(e) => handleDeleteHastaClick(id, e)}
+                >
                   ❌
                 </div>
               </div>
