@@ -4,28 +4,29 @@ import { useNavigate } from "react-router-dom";
 const HastaEkle = ({ dataDoktor, hastaSon, setDataDoktor, setHastaSon }) => {
   const [hastaBil, setHastaBil] = useState(hastaSon);
   const [day, setDay] = useState("");
-const navigate=useNavigate()
+  const navigate = useNavigate();
 
   const hastaAddClick = (doktor) => {
-    setHastaSon([...hastaSon, {
-      id: hastaSon.lenght + 1,
-      day: day,
-      bittiMi: false,
-      doktor: doktor,
-      text:hastaBil
-    }]);
-    
+    setHastaSon([
+      ...hastaSon,
+      {
+        id: hastaSon.lenght + 1,
+        day: day,
+        bittiMi: false,
+        doktor: doktor,
+        text: hastaBil,
+      },
+    ]);
   };
 
-  const handleDeleteHastaClick = ( id) => {
-    const deleteLis = hastaSon.filter((del) => del.id != id);
+  const handleDeleteHastaClick = (id) => {
+    const deleteLis = hastaSon.filter((del) => del.id !== id);
     setHastaSon(deleteLis);
-    
   };
 
   const handleDivClickk = (id) => {
     const uptadeLis = hastaSon.map((doktor) => {
-      if (doktor.id == id) {
+      if (doktor.id === id) {
         return {
           ...doktor,
           bittiMi: !doktor.bittiMi,
@@ -77,7 +78,11 @@ const navigate=useNavigate()
               kayıt oluştur
             </button>
             <br></br>
-            <button type="button" class="btn btn-info mt-2" onClick={()=> navigate("/")}>
+            <button
+              type="button"
+              class="btn btn-info mt-2"
+              onClick={() => navigate("/")}
+            >
               Geri Dön
             </button>
           </div>

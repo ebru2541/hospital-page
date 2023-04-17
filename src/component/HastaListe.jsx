@@ -7,7 +7,7 @@ const HastaListe = (e) => {
   const [dataSon, setDataSon] = useState(data);
 
   const handleDeleteClick = (id, e) => {
-    const deleteLis = dataSon.filter((del) => del.id != id);
+    const deleteLis = dataSon.filter((del) => del.id !== id);
     console.log(deleteLis);
     setToggle(!toggle);
     setDataSon(deleteLis);
@@ -15,7 +15,7 @@ const HastaListe = (e) => {
 
   const handleDivClick = (id) => {
     const uptadeList = dataSon.map((doktor) => {
-      if (doktor.id == id) {
+      if (doktor.id === id) {
         return {
           ...doktor,
           bittiMi: !doktor.bittiMi,
