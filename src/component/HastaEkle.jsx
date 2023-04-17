@@ -91,6 +91,7 @@ const HastaEkle = ({ dataDoktor, hastaSon, setHastaSon }) => {
           <div>
             {hastaSon.map(({ text, doktor, day, bittiMi, id }) => (
               <div
+                key={id}
                 className="liste-hasta"
                 role="button"
                 onClick={() => handleDivClickk(id)}

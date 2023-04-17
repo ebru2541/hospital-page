@@ -9,13 +9,12 @@ const Home = () => {
   const [hastaSon, setHastaSon] = useState("");
 
   const handleHastaClick = ({ e, doktor, img, id }) => {
-    const newDoktor = new Object({
+    const newDoktor = {
       id: id,
       img: img,
       doktor: doktor,
-    });
+    };
     setDataDoktor(newDoktor);
-    console.log(dataDoktor);
     e.target.closest(".row").style.display = "none";
     setShow(!show);
 
