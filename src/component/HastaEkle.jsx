@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const HastaEkle = ({ dataDoktor, hastaSon, setDataDoktor, setHastaSon }) => {
+const HastaEkle = ({ dataDoktor, hastaSon, setHastaSon }) => {
   const [hastaBil, setHastaBil] = useState(hastaSon);
   const [day, setDay] = useState("");
   const navigate = useNavigate();

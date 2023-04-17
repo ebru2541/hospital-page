@@ -6,9 +6,8 @@ const HastaListe = (e) => {
 
   const [dataSon, setDataSon] = useState(data);
 
-  const handleDeleteClick = (id, e) => {
+  const handleDeleteClick = (id) => {
     const deleteLis = dataSon.filter((del) => del.id !== id);
-    console.log(deleteLis);
     setToggle(!toggle);
     setDataSon(deleteLis);
   };
