@@ -6,11 +6,14 @@ const HastaEkle = ({ doktorSingle, hastaSon, setHastaSon }) => {
   const [hastaBil, setHastaBil] = useState("");
   const navigate = useNavigate();
 
+  const hasta=hastaSon.filter((hasta) => hasta.doktor === doktorSingle.doktor);
+
+
   const hastaAddClick = (doktor) => {
     setHastaSon([
       ...hastaSon,
       {
-        id: new Date().getSeconds(),
+        id: new Date().getMilliseconds(),
         day: day,
         bittiMi: false,
         doktor: doktor,
@@ -89,7 +92,7 @@ const HastaEkle = ({ doktorSingle, hastaSon, setHastaSon }) => {
         </div>
         <div className="col-6 box ">
           <div>
-            {hastaSon?.map(({ text, doktor, day, bittiMi, id }) => (
+            {hasta?.map(({ text, doktor, day, bittiMi, id }) => (
               <div
                 className="liste-hasta"
                 role="button"
@@ -107,7 +110,7 @@ const HastaEkle = ({ doktorSingle, hastaSon, setHastaSon }) => {
                 </div>
                 <div
                   className="icon"
-                  onClick={() => handleDeleteHastaClick(id)}
+                  onDoubleClick={() => handleDeleteHastaClick(id)}
                 >
                   ❌
                 </div>

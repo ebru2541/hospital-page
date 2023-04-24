@@ -2,7 +2,7 @@ import React from "react";
 import HastaListe from "./HastaListe";
 
 import { useNavigate } from "react-router-dom";
-const Home = ({ hastaSon, setHastaSon ,dataDoktor,setDoktorSingle}) => {
+const Home = ({ hastaSon, setHastaSon ,dataDoktor,setDoktorSingle, }) => {
   // const [show, setShow] = useState(true);
 
   const navigate = useNavigate();
@@ -14,7 +14,6 @@ const Home = ({ hastaSon, setHastaSon ,dataDoktor,setDoktorSingle}) => {
       doktor: doktor,
     };
    setDoktorSingle(newDoktor);
-   setHastaSon(hastaSon.filter((hasta) => hasta.doktor === doktor))
     navigate("/hasta");
   };
 
@@ -45,16 +44,7 @@ const Home = ({ hastaSon, setHastaSon ,dataDoktor,setDoktorSingle}) => {
         </div>
       </div>
       <HastaListe hastaSon={hastaSon} setHastaSon={setHastaSon} />
-      {/* {show ? (
-        <HastaListe />
-      ) : (
-        <HastaEkle
-          dataDoktor={dataDoktor}
-          hastaSon={hastaSon}
-          setHastaSon={setHastaSon}
-          setShow={setShow}
-        />
-      )} */}
+  
     </div>
   );
 };
