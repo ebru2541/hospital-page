@@ -1,38 +1,33 @@
-import React, { useState } from "react";
+import React from "react";
 import HastaListe from "./HastaListe";
-import doktor from "../helpers/doktorlar.js";
-import HastaEkle from "./HastaEkle";
-import hasta from "../helpers/hastalar";
-const Home = () => {
-  const [show, setShow] = useState(true);
-  const [dataDoktor, setDataDoktor] = useState("");
-  const [hastaSon, setHastaSon] = useState("");
 
-  const handleHastaClick = ({ e, doktor, img, id }) => {
+import { useNavigate } from "react-router-dom";
+const Home = ({ hastaSon, setHastaSon ,dataDoktor,setDoktorSingle}) => {
+  // const [show, setShow] = useState(true);
+
+  const navigate = useNavigate();
+
+  const handleHastaClick = ({ doktor, img, id }) => {
     const newDoktor = {
       id: id,
       img: img,
       doktor: doktor,
     };
-    setDataDoktor(newDoktor);
-    e.target.closest(".row").style.display = "none";
-    setShow(!show);
-
-    const hastaSon = hasta.filter((item) => item.doktor === newDoktor.doktor);
-
-    setHastaSon(hastaSon)
+   setDoktorSingle(newDoktor);
+   setHastaSon(hastaSon.filter((hasta) => hasta.doktor === doktor))
+    navigate("/hasta");
   };
 
   return (
     <div>
       <div className="container">
-        {show && <h2 className="text-center">HOSPİTAL</h2>}
+        <h2 className="text-center">HOSPİTAL</h2>
         <div className="row g-1">
-          {doktor.map(({ id, doktor, img }) => (
-            <div className="col-3 box" key={id}>
-              <div className="img">
+          {dataDoktor.map(({ id, doktor, img }) => (
+            <div className="col-3 box">
+              <div className="img" key={id}>
                 <img
-                  className={show ? id : ""}
+                  // className={show ? id : ""}
                   id={id}
                   src={img}
                   width="140px"
@@ -49,16 +44,17 @@ const Home = () => {
           ))}
         </div>
       </div>
-      {show ? (
+      <HastaListe hastaSon={hastaSon} setHastaSon={setHastaSon} />
+      {/* {show ? (
         <HastaListe />
       ) : (
         <HastaEkle
           dataDoktor={dataDoktor}
-          setDataDoktor={setDataDoktor}
           hastaSon={hastaSon}
           setHastaSon={setHastaSon}
+          setShow={setShow}
         />
-      )}
+      )} */}
     </div>
   );
 };

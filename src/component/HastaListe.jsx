@@ -1,19 +1,19 @@
 import React, { useState } from "react";
-import data from "../helpers/hastalar";
 
-const HastaListe = (e) => {
+
+const HastaListe = ({hastaSon, setHastaSon}) => {
   const [toggle, setToggle] = useState(false);
-
-  const [dataSon, setDataSon] = useState(data);
+console.log(hastaSon)
+  // const [dataSon, setDataSon] = useState(data);
 
   const handleDeleteClick = (id) => {
-    const deleteLis = dataSon.filter((del) => del.id !== id);
+    const deleteLis = hastaSon.filter((del) => del.id !== id);
     setToggle(!toggle);
-    setDataSon(deleteLis);
+    setHastaSon(deleteLis);
   };
 
   const handleDivClick = (id) => {
-    const uptadeList = dataSon.map((doktor) => {
+    const uptadeList = hastaSon.map((doktor) => {
       if (doktor.id === id) {
         return {
           ...doktor,
@@ -23,12 +23,12 @@ const HastaListe = (e) => {
       return doktor;
     });
 
-    setDataSon(uptadeList);
+    setHastaSon(uptadeList);
   };
 
   return (
     <div className="box">
-      {dataSon.map(({ id, text, day, bittiMi, doktor }) => (
+      {hastaSon?.map(({ id, text, day, bittiMi, doktor }) => (
         <>
           <div
             className="liste"

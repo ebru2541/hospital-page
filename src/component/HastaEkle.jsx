@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const HastaEkle = ({ dataDoktor, hastaSon, setHastaSon }) => {
-  const [hastaBil, setHastaBil] = useState(hastaSon);
+const HastaEkle = ({ doktorSingle, hastaSon, setHastaSon }) => {
   const [day, setDay] = useState("");
+  const [hastaBil, setHastaBil] = useState("");
   const navigate = useNavigate();
 
   const hastaAddClick = (doktor) => {
     setHastaSon([
       ...hastaSon,
       {
-        id: hastaSon.lenght + 1,
+        id: new Date().getSeconds(),
         day: day,
         bittiMi: false,
         doktor: doktor,
@@ -44,7 +44,7 @@ const HastaEkle = ({ dataDoktor, hastaSon, setHastaSon }) => {
         <div className="col-6 box">
           <div className="img1">
             <img
-              src={dataDoktor.img}
+              src={doktorSingle?.img}
               width="140px"
               height="140px"
               alt=""
@@ -52,7 +52,7 @@ const HastaEkle = ({ dataDoktor, hastaSon, setHastaSon }) => {
             ></img>
           </div>
           <div className="name">
-            <div className="name-box">{dataDoktor.doktor}</div>
+            <div className="name-box">{doktorSingle?.doktor}</div>
           </div>
 
           <div>
@@ -71,16 +71,16 @@ const HastaEkle = ({ dataDoktor, hastaSon, setHastaSon }) => {
             <br></br>
             <button
               type="button"
-              class="btn btn-warning mt-3 me-2"
-              onClick={() => hastaAddClick(dataDoktor.doktor)}
+              className="btn btn-warning mt-3 me-2"
+              onClick={() => hastaAddClick(doktorSingle?.doktor)}
             >
-              <span className="text-danger">{dataDoktor.doktor}</span> için
+              <span className="text-danger">{doktorSingle?.doktor}</span> için
               kayıt oluştur
             </button>
             <br></br>
             <button
               type="button"
-              class="btn btn-info mt-2"
+              className="btn btn-info mt-2"
               onClick={() => navigate("/")}
             >
               Geri Dön
@@ -89,14 +89,13 @@ const HastaEkle = ({ dataDoktor, hastaSon, setHastaSon }) => {
         </div>
         <div className="col-6 box ">
           <div>
-            {hastaSon.map(({ text, doktor, day, bittiMi, id }) => (
+            {hastaSon?.map(({ text, doktor, day, bittiMi, id }) => (
               <div
-                key={id}
                 className="liste-hasta"
                 role="button"
                 onClick={() => handleDivClickk(id)}
               >
-                <div className="bilgi">
+                <div className="bilgi" key={id}>
                   <h2 className={bittiMi ? "text-danger" : ""}>{text}</h2>
                   <p className="text-light">{day}</p>
                   <h2 className={bittiMi ? "text-danger" : ""}>{doktor}</h2>
@@ -108,7 +107,7 @@ const HastaEkle = ({ dataDoktor, hastaSon, setHastaSon }) => {
                 </div>
                 <div
                   className="icon"
-                  onClick={(e) => handleDeleteHastaClick(id, e)}
+                  onClick={() => handleDeleteHastaClick(id)}
                 >
                   ❌
                 </div>

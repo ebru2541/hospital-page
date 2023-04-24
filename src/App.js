@@ -1,13 +1,11 @@
 
 import './App.css';
-import HastaListe from './component/HastaListe';
-
-import Home from './component/Home';
+import AppRouter from './router/AppRouter';
 
 function App() {
   return (
     <div className="App">
-      <Home/>
+     <AppRouter/>
     
     </div>
   );
