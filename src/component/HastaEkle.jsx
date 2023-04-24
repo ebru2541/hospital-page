@@ -6,8 +6,9 @@ const HastaEkle = ({ doktorSingle, hastaSon, setHastaSon }) => {
   const [hastaBil, setHastaBil] = useState("");
   const navigate = useNavigate();
 
-  const hasta=hastaSon.filter((hasta) => hasta.doktor === doktorSingle.doktor);
-
+  const hasta = hastaSon.filter(
+    (hasta) => hasta.doktor === doktorSingle.doktor
+  );
 
   const hastaAddClick = (doktor) => {
     setHastaSon([
@@ -63,10 +64,12 @@ const HastaEkle = ({ doktorSingle, hastaSon, setHastaSon }) => {
             <input
               type="text"
               className="w-75 "
+              required
               onChange={(e) => setHastaBil(e.target.value)}
             />
             <h6 className="m-2">Day & Time</h6>
             <input
+              required
               type="date"
               className="w-75"
               onChange={(e) => setDay(e.target.value)}
